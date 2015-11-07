@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	function ajaxFunction(){
+	var xmlHttp;
+	try{
+		xmlHttp = new XMLHttpRequest("Msxml2.XMLHTTP");
+	}
+	catch(e){
+		try{
+			xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		catch(e){
+			alert("你的浏览器不支持Ajax");
+			return false;
+		}
+	};
+	return true;
+}
+
+	if (xmlHttp) {
+		xmlHttp.open('GET',1.txt,true);
+		xmlHttp.onreadyStatechange = (function(){
+			if (xmlhttp.readyState == 4) {
+				if (xmlHttp.status == 200) {
+					document.getElementById("test").innerHTML = xmlHttp.response;
+					xmlHttp.send(null);
+				};
+			};
+		})();
+	
+	</script>
+</head>
+<body>
+
+
+
+	1111
+	<li>hahaah</li>
+	<button type="button" id="test" value="test" onclick="ajaxFunction()">111</button>
+</body>
+</html>
