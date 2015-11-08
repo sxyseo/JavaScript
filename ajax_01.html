@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+ 	<script type="text/javascript">
+
+ 	xmlHttp = null;
+
+ 	function readyStateChangeHandle(){
+ 		console.log("---------");
+ 		console.log(xmlHttp.readyState);
+ 		console.log(xmlHttp.status);
+ 		console.log("---------");
+
+ 		if(xmlHttp.readyState == 4){
+ 			if (xmlHttp.status == 200) {
+ 				console.log(xmlHttp.response);
+ 				document.getElementById('test111').innerHTML = xmlHttp.response;
+ 				alert("!!!!!!!!!");
+ 			}
+ 		}
+ 	};
+
+ 	function ajaxFunction(the_request_url)
+ 	{
+ 		try{
+			xmlHttp = new XMLHttpRequest();
+		}
+		catch(e){
+			try{
+				xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+			}
+			catch(e){
+				try{
+					xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				catch(e){
+					alert("你的浏览器不支持Ajax");
+					return false;	
+				}
+			}
+		}
+
+
+		if(xmlHttp){
+			xmlHttp.open('GET',the_request_url,true);
+			xmlHttp.onreadystatechange = readyStateChangeHandle();
+			xmlHttp.send(null);
+		}else{
+			alert("error!");
+		};
+
+ 	};
+
+
+	// function ajaxFunction(the_request_url)
+	// {
+	// 	var xmlHttp;
+	// 	try{
+	// 		xmlHttp = new XMLHttpRequest();
+	// 	}
+	// 	catch(e){
+	// 		try{
+	// 			xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+	// 		}
+	// 		catch(e){
+	// 			try{
+	// 				xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+	// 			}
+	// 			catch(e){
+	// 				alert("你的浏览器不支持Ajax");
+	// 				return false;	
+	// 			}
+	// 		}
+	// 	}
+
+	// 	if(xmlHttp)
+	// 	{
+	// 		xmlHttp.open('GET',the_request_url,true);
+	// 		xmlHttp.onreadystatechange = function()
+	// 		{
+	// 			if (xmlHttp.readyState == 4) {
+	// 				if (xmlHttp.status == 200) {
+	// 					document.getElementById('test111').innerHTML = xmlHttp.response;
+	// 				};
+	// 			};
+	// 		};
+	// 		xmlHttp.send(null);
+	// 	}else{
+	// 		alert("error");
+	// 	}
+	// }	
+	</script>
+</head>
+<body>
+	<br />
+	<br />
+	<div id="test111">test111</div>
+	<div id="test1">test1</div>
+	<input type="button" id="test1" value="test" onclick="javascript:ajaxFunction('1.txt')" />
+</body>
+</html>
