@@ -1,45 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<script type="text/javascript">
-	function ajaxFunction(){
-	var xmlHttp;
-	try{
-		xmlHttp = new XMLHttpRequest("Msxml2.XMLHTTP");
-	}
-	catch(e){
+ 	<script type="text/javascript">
+
+	function ajaxFunction(the_request_url)
+	{
+		var xmlHttp;
+		console.log(xmlHttp);
+		console.log("\n");
 		try{
-			xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+			xmlHttp = new XMLHttpRequest();
+			console.log(xmlHttp);
+			console.log("\n");
 		}
 		catch(e){
-			alert("你的浏览器不支持Ajax");
-			return false;
+			try{
+				xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+				console.log(xmlHttp);
+				console.log("\n");
+			}
+			catch(e){
+				try{
+					xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+					console.log(xmlHttp);
+					console.log("\n");
+				}
+				catch(e){
+					alert("你的浏览器不支持Ajax");
+					return false;	
+				}
+			}
 		}
-	};
-	return true;
-}
 
-	if (xmlHttp) {
-		xmlHttp.open('GET',1.txt,true);
-		xmlHttp.onreadyStatechange = (function(){
-			if (xmlhttp.readyState == 4) {
-				if (xmlHttp.status == 200) {
-					document.getElementById("test").innerHTML = xmlHttp.response;
-					xmlHttp.send(null);
+		if(xmlHttp)
+		{
+			xmlHttp.open('GET',the_request_url,true);
+			xmlHttp.onreadystatechange = function()
+			{
+				console.log(xmlHttp.readyState);
+				console.log("\n");
+				console.log(xmlHttp.status);
+				console.log("\n");
+				console.log(xmlHttp.response);
+				console.log("\n");
+				
+				if (xmlHttp.readyState == 4) {
+					if (xmlHttp.status == 200) {
+						console.log(xmlHttp.response);
+						document.getElementById('test111').innerHTML = xmlHttp.response;
+					};
 				};
 			};
-		})();
-	
+			xmlHttp.send(null);
+		}else{
+			alert("error");
+		}
+	}	
+
+	document.getElementById('test1').innerText = "11111111";
 	</script>
 </head>
 <body>
-
-
-
-	1111
-	<li>hahaah</li>
-	<button type="button" id="test" value="test" onclick="ajaxFunction()">111</button>
+	<input type="button" id="test" value="test" onclick="javascript:ajaxFunction('1.txt')" />
+	<br />
+	<br />
+	<div id="test111">test111</div>
+	<div id="test1">test1</div>
 </body>
 </html>
