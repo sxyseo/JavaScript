@@ -7,24 +7,24 @@
 	function ajaxFunction(the_request_url)
 	{
 		var xmlHttp;
-		console.log(xmlHttp);
-		console.log("\n");
+		// console.log(xmlHttp);
+		// console.log("\n");
 		try{
 			xmlHttp = new XMLHttpRequest();
-			console.log(xmlHttp);
-			console.log("\n");
+			//console.log(xmlHttp);
+			// console.log("\n");
 		}
 		catch(e){
 			try{
 				xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
-				console.log(xmlHttp);
-				console.log("\n");
+				// console.log(xmlHttp);
+				// console.log("\n");
 			}
 			catch(e){
 				try{
 					xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-					console.log(xmlHttp);
-					console.log("\n");
+					// console.log(xmlHttp);
+					// console.log("\n");
 				}
 				catch(e){
 					alert("你的浏览器不支持Ajax");
@@ -38,15 +38,17 @@
 			xmlHttp.open('GET',the_request_url,true);
 			xmlHttp.onreadystatechange = function()
 			{
+				//console.log(xmlHttp.readyState);
+				// console.log("\n");
+				// console.log(xmlHttp.status);
+				// console.log("\n");
+				// console.log(xmlHttp.response);
+				// console.log("\n");
 				console.log(xmlHttp.readyState);
-				console.log("\n");
-				console.log(xmlHttp.status);
-				console.log("\n");
-				console.log(xmlHttp.response);
-				console.log("\n");
-				
+				console.log("--------readyState-----")
 				if (xmlHttp.readyState == 4) {
 					if (xmlHttp.status == 200) {
+						console.log("----OK---");
 						console.log(xmlHttp.response);
 						document.getElementById('test111').innerHTML = xmlHttp.response;
 					};
