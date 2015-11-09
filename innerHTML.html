@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>js innerHTML append data</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+</head>
+<body>
+解决问题：使用container_innerHTML，输入数据在新添加时丢失；使用container_appendChild则不会。
+<br/>
+存在不足：使用container_appendChild的每一个input都被一个div包含着。
+<br/>
+container_innerHTML:<div id="container_innerHTML"></div>
+<br/>
+container_appendChild:<div id="container_appendChild"></div>
+<input type="button" value="添加" id="add"></input>
+<script type="text/javascript">
+var tpl = '<input type="text" value=""/>';  //这里只是一个简单的input，还可以是很多很多标签集合，因此我没有直接使用createElement('input')进行appendChild
+document.getElementById('add').onclick = function(){
+    //container_innerHTML
+    document.getElementById('container_innerHTML').innerHTML += tpl;
+
+　　　　//新增，通过存储数据也能实现数据的沿用，不过没有appendChild来的方便。
+　　　　//container_innerHTML
+     　　var inputs = document.getElementById('container_innerHTML').getElementsByTagName('input');
+     　　var storeInputs = [];
+　　　　　//存储input的数据
+     　　for(var i=0;i<inputs.length;i++){
+     　　   storeInputs[i] = inputs[i].value;
+   　　  }
+   　　  document.getElementById('container_innerHTML').innerHTML += tpl;
+　　　　　//还原input的数据
+   　　  for(var i=0;i<inputs.length-1;i++){
+   　　     inputs[i].value = storeInputs[i];
+   　　  }
+
+    //container_appendChild
+    var div = document.createElement('div');
+    div.innerHTML = tpl;
+    document.getElementById('container_appendChild').appendChild(div);
+}
+</script>
+</body>
+</html>
