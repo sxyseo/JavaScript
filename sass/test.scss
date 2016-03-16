@@ -1,0 +1,14 @@
+$blue:#898767;
+div {
+	color:$blue;
+	.nav{
+		li{
+		font-size:12px;
+		a{
+		&hover{
+		color:red;
+		}
+		}		
+		}
+	}
+}

@@ -1,0 +1,30 @@
+/*
+Error: Invalid CSS after "@import '_reset'": expected selector or at-rule, was ":"
+        on line 3 of 2_2.scss
+
+1: //sass style
+2: //-----
+3: @import '_reset':
+4: body{
+5: 	font-size:100% Helvetica,sans-serif;
+6: 	background-color:#efefef;
+7: }
+
+Backtrace:
+2_2.scss:3
+D:/Ruby22/sass/lib/sass/scss/parser.rb:1179:in `expected'
+D:/Ruby22/sass/lib/sass/scss/parser.rb:1115:in `expected'
+D:/Ruby22/sass/lib/sass/scss/parser.rb:40:in `parse'
+D:/Ruby22/sass/lib/sass/engine.rb:403:in `_to_tree'
+D:/Ruby22/sass/lib/sass/engine.rb:378:in `_render_with_sourcemap'
+D:/Ruby22/sass/lib/sass/engine.rb:295:in `render_with_sourcemap'
+D:/Ruby22/sass/lib/sass/exec/sass_scss.rb:391:in `run'
+D:/Ruby22/sass/lib/sass/exec/sass_scss.rb:63:in `process_result'
+D:/Ruby22/sass/lib/sass/exec/base.rb:52:in `parse'
+D:/Ruby22/sass/lib/sass/exec/base.rb:19:in `parse!'
+D:/Ruby22/sass/bin/sass:13:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"@import '_reset'\": expected selector or at-rule, was \":\"\A         on line 3 of 2_2.scss\A \A 1: //sass style\A 2: //-----\A 3: @import '_reset':\A 4: body{\A 5: 	font-size:100% Helvetica,sans-serif;\A 6: 	background-color:#efefef;\A 7: }"; }
