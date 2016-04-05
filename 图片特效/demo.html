@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片效果</title>
+	<style type="text/css">
+		.img_boxList { width: 985px; height: 190px; margin: 0 auto; }
+		.img_box0,.img_box1,.img_box2,.img_box3,.img_box4 {float: left;width: 188px; height: 188px; margin: 0 9px 9px 0; cursor: pointer }
+		.img_box0 { background: url(img/junyuan-oclock.jpg) -1px -2281px; }
+		.img_box1 { background: url(img/qianglee-oclock.jpg) -1px -2281px;}
+		.img_box2 { background: url(img/shaojing-oclock.jpg) -1px -2281px;}
+		.img_box3 { background: url(img/shirejiang-oclock.jpg) -1px -2281px;}
+		.img_box4 { background: url(img/yaqian-oclock.jpg) -1px -2281px;}
+	</style>
+	<script src="js/zepto.js"></script>
+	<script type="text/javascript">
+	 $(function() {
+		var a, b, c, d, e, f, g, h, i, j, k;
+		return c = $(window), a = $(".img_boxList"), b = a.find(".member"), j = {
+		//img_boxList是获取放图片的大盒子，member是获取放图片的盒子
+			imageSize: 190,//图片尺寸
+			lookStraight: 30 
+			//触发换图的范围，值越大，鼠标需要移得越远，才能触发换图；值越小，这相反。
+
+		}
+		, d = function(a, b, c, d) {//a横坐标，b纵坐标，
+			var e, f, g, h, i;
+
+console.log(c);
+			return h = a - c, i = b - d, e = Math.sqrt(h * h + i * i), e < j.lookStraight ? g = 12 : (f = Math.PI / 6, g = Math.round(Math.atan2(h, i) / f), g -= 3, g = (12 - g) % 12), g;
+			
+		}
+		, k = function(a, c) {
+						
+			var e, f;
+			return f = j.imageSize, e = j.imageSize, $.each(b, function(b, g) {
+				var h, i, j, k, l;
+				return g = $(g), h = g.offset(), i = h.left + f / 2, j = h.top + e / 2, l = 1, k = -e * d(a, c, i, j) - l, g.css("background-position", "0px " + k + "px")
+			})
+		}, g = function(a) {
+			
+
+			return k(a.pageX, a.pageY)
+		}, f = function(a) {
+
+			var b, c, d, e, f, g, h, i, j;
+			if (window.hasOwnProperty("ontouchstart") || navigator.msMaxTouchPoints > 0) {
+				if (e = !1, b = 3, c = c > -b && b > c ? 0 : Math.floor(a.originalEvent.beta), d = d > -b && b > d ? 0 : Math.floor(a.originalEvent.gamma), j = {
+					x: document.body.clientWidth / 2,
+					y: screen.height / 2
+				}, void 0 === f && (f = {
+					beta: c,
+					gamma: d
+				}), void 0 !== window.orientation) {
+					switch (window.orientation) {
+					case 0:
+					case 90:
+						i = c, c = -d, d = i;
+						break;
+					case 180:
+						d = -d, c = -c;
+						break;
+					case -90:
+						i = c, c = d, d = -i
+					}
+					e = !0
+				}
+				if (0 !== c && c !== f.beta && (j.y += c, j.y > document.body.clientHeight ? j.y = document.body.clientHeight : j.y < 0 && (j.y = 0), e = !0), e) return $(window).unbind("mousemove"), g = j.x, h = j.y, k(g, h)
+			}
+		}, h = function() {
+			return c.on("mousemove", g), c.on("deviceorientation", f), b.click(e)
+		}, a.length ? h() : void 0;
+		
+	})
+</script>
+</head>
+<body>
+	<div class="img_boxList">
+		<div class="img_box0 member"></div>
+		<div class="img_box1 member"></div>
+		<div class="img_box2 member"></div>
+		<div class="img_box3 member"></div>
+		<div class="img_box4 member"></div>
+	</div>
+</body>
+</html>
