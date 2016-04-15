@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2016高考倒计时</title>
+	<script type="text/javascript">
+		window.onload=function()
+		{
+			var curtime=new Date();
+			var endtime=new Date('2016/06/07 09:00:00');
+			var lefttime=endtime.getTime()-curtime.getTime();
+			var leftday = Math.floor(lefttime / (3600 * 24 * 1000)) ;
+			document.getElementById("showtime").innerHTML=leftday;
+		}
+
+		function getRTime()
+		{
+			var EndTime= new Date('2016/06/07 09:00:00'); //截止时间
+			var NowTime = new Date();
+			var t =EndTime.getTime() - NowTime.getTime();
+			var d=Math.floor(t/1000/60/60/24);
+			var h=Math.floor(t/1000/60/60%24);
+			var m=Math.floor(t/1000/60%60);
+			var s=Math.floor(t/1000%60);
+
+			document.getElementById("t_d").innerHTML = d + " 天";
+			document.getElementById("t_h").innerHTML = h + " 时";
+			document.getElementById("t_m").innerHTML = m + " 分";
+			document.getElementById("t_s").innerHTML = s + " 秒";
+		}
+
+		setInterval(getRTime,1000);
+	</script>
+	<style type="text/css">
+		#gn_box {
+			margin: 0 auto;
+			width: 770px;
+			padding: 20px 14px;
+			border: 1px solid #E1CFAB;
+			background: #FCF3E2;
+		}
+		#gn_box h1 {
+			line-height: 50px;
+			font-family: "微软雅黑";
+			font-size: 26px;
+			font-weight: 400;
+			text-align: center;
+			color: #C30F10;
+		}
+		#gn_box h4 {
+			line-height: 50px;
+			font-family: "微软雅黑";
+			font-size: 16px;
+			font-weight: 400;
+			text-align: center;
+		}
+		#gn_box .HotDate {
+			line-height: 100px;
+			font-family: "微软雅黑";
+			font-size: 64px;
+			font-weight: 400;
+			text-align: center;
+		}
+		#gn_box .showDay {
+			text-align: center;
+			margin: 30px;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="gn_box">
+		<h1>2016年高考倒计时</h1>
+		<h4>2016高考时间：2016年6月7、8、9日</h4>
+		<h4>目前距离2016年高考还有</h4>
+		<div id="CountMsg" class="HotDate">
+			<span id="t_d">00天</span>
+			<span id="t_h">00时</span>
+			<span id="t_m">00分</span>
+			<span id="t_s">00秒</span>
+		</div>
+		<hr>
+		<div class="showDay">离高考结束还有<span id="showtime" ></span>天</div>	
+	</div>
+
+</body>
+</html>
