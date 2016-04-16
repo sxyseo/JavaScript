@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	var x = 1;
+	var y = 0;
+	var z = 0;
+	var b = 0;
+	var a = 1;
+	var xy = x && y;
+	var xyz = xy || z;
+	var xyzb = xyz && b;
+	var xyzba = xyzb || a;
+
+	var zb = z && b;
+
+	console.log("先算 x && y \n");
+	console.log(xy);
+	console.log("算 x  && y || z \n");
+	console.log(xyz);
+	console.log("算 x  && y || z && b \n");
+	console.log(xyzb);
+	console.log("算x  && y || z && b || a 最后的结果 xyzba:\n");
+	console.log(xyzba);
+
+	console.log("先算 x && y\n");
+	console.log(xy);
+	console.log("算 z && b\n");
+	console.log(zb);
+	console.log("算xy || zb || a 的结果是 xy zb a:\n");
+	console.log( xy || zb ||a);
+
+	console.log("实际上直接输入的结果是-----------");
+	console.log((x  && y || z && b || a ));
+
+	var aa = 1;
+	var bb = 0;
+	var cc = 2;
+
+	m= 1 || 0 && cc;
+	n = (1||0) && cc;
+	//alert(m);
+	//alert(n);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
