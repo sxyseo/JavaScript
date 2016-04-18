@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        富Marker示例</title>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
+    <script type="text/javascript" src="./RichMarker_min.js"></script>
+    <script type="text/javascript" src="./InfoBox_min.js"></script>
+    <style>
+        body{margin:0;padding:0}
+        #popup{
+            width:300px;
+            height:200px;
+            border:1px solid #000000;
+            background:#fff;
+            position:absolute;
+            left:-110px;
+            top:-230px;
+        }
+        #rm4_image{
+            width:40px;
+            height:40px;
+            position:absolute;
+            right:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div style="width:100%;height:600px;border:1px solid gray;margin:10px 0 0 10px;" id="container">
+</div>
+
+
+<script type="text/javascript">
+
+    var map = new BMap.Map("container");
+    var point = new BMap.Point(113.421952, 23.132704);
+    map.centerAndZoom(point,14);
+    map.enableScrollWheelZoom();
+
+
+    var html2 = '<div id="div_bg" style="width:71px;height:71px;">'
+            +     '<img id="rm3_image" src="ico.jpg">'
+            + '</div>';
+
+    myRichMarker2 =new BMapLib.RichMarker(html2,  new BMap.Point(113.421952, 23.132704));
+    map.addOverlay(myRichMarker2);
+    //    document.getElementById("div_bg").parentNode.style.background="";
+
+
+
+    myRichMarker2.addEventListener("onclick", function(e) {
+
+
+        document.getElementById("rm3_image").src = "ico1.jpg";
+        var html3 = '<div id="popup">'
+                + '<img id="rm4_image" src="ico1.jpg">'
+                + '</div>';
+
+
+        myRichMarker3 = new BMapLib.RichMarker(html3,  new BMap.Point(113.421952, 23.132704));
+        var infoBox = new BMapLib.InfoBox(html3,point);
+        map.addOverlay(myRichMarker3);
+
+
+
+        document.getElementById("rm4_image").onclick=function(){
+            document.getElementById("rm3_image").src = "ico.jpg";
+            document.getElementById("popup").style.display="none";
+            map.removeOverlay(myRichMarker3); //删除覆盖物myRichMarker3
+        }
+
+
+    });
+
+</script>
+</body>
+</html>
+
+
