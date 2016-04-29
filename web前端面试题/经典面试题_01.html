@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		/*定义var func这个方法时，
+		因为是立即执行函数，所以特权属性a为1，
+		func(4)=>等价于 function(a){a+=this.a;return a;}
+		这个时候，形参a==4,this.a==1,所以是5*/
+		var func = (function(a){
+			this.a = a;
+			return function(a){
+				a+=this.a;
+				return a;
+			};
+		})(function(a,b){
+			return a;
+		}(1,2));
+
+		console.log(func(4));
+	</script>
+</head>
+<body>
+</body>
+</html>
